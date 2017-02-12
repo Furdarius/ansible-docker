@@ -4,6 +4,12 @@
 Install [Docker Engine](https://docs.docker.com/engine/userguide/intro/) on
 remote machine.
 
+## Install
+
+```bash
+ansible-galaxy install Furdarius.docker
+```
+
 ## Variables
 
 All variables can be found in [defaults/main.yml](https://github.com/Furdarius/ansible-docker/blob/master/defaults/main.yml)
