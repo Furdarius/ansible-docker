@@ -1,0 +1,46 @@
+---
+- name: Install python-pip
+  apt:
+    name: python-pip
+    state: latest
+
+- name: Check if Docker is not already installed
+  command: dpkg-query -l docker-engine
+  register: is_installed
+  failed_when: is_installed.rc > 1
+  changed_when: no
+
+- name: Install curl
+  apt:
+    name: curl
+
+- name: Install Docker
+  shell: curl -sSL https://get.docker.com/ | sh
+  when: is_installed.rc != 0
+
+- name: Update Docker package
+  apt:
+    name: "docker-engine"
+    state: latest
+  notify:
+    - Restart docker
+
+- name: Ensure Docker-Daemon config file is present
+  template:
+    src: docker.j2
+    dest: /etc/default/docker
+  notify:
+    - Restart docker
+
+- name: Install "docker-py"
+  pip:
+    name: "docker-py"
+
+# - name: Reload Docker if iptables chain doesn't exist
+#   become: true
+#   shell: iptables -S | grep docker
+#   register: has_chain
+#   failed_when: has_chain.rc > 1
+#   changed_when: has_chain.rc != 0
+#   notify:
+#     - Restart docker

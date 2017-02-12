@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+{% if dockerd is defined %}
+DOCKERD="{{ dockerd }}"
+{% endif %}
+
+{% if docker_opts is defined %}
+DOCKER_OPTS="{{ docker_opts }}"
+{% endif %}
+
+{% if docker_http_proxy is defined %}
+export http_proxy="{{ docker_http_proxy }}"
+{% endif %}
+
+{% if docker_tmpdir is defined %}
+export TMPDIR="{{ docker_tmpdir }}"
+{% endif %}

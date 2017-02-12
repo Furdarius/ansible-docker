@@ -1,0 +1,12 @@
+---
+# Customize location of Docker binary (especially for development testing).
+#dockerd: "/usr/local/bin/dockerd"
+
+# Use DOCKER_OPTS to modify the daemon startup options.
+#docker_opts: "--dns 8.8.8.8 --dns 8.8.4.4"
+
+# If you need Docker to use an HTTP proxy, it can also be specified here.
+#docker_http_proxy: "http://127.0.0.1:3128/"
+
+# This is also a handy place to tweak where Docker's temporary files go.
+#docker_tmpdir: "/mnt/bigdrive/docker-tmp"
