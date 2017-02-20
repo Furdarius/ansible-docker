@@ -36,11 +36,11 @@
   pip:
     name: "docker-py"
 
-# - name: Reload Docker if iptables chain doesn't exist
-#   become: true
-#   shell: iptables -S | grep docker
-#   register: has_chain
-#   failed_when: has_chain.rc > 1
-#   changed_when: has_chain.rc != 0
-#   notify:
-#     - Restart docker
+- name: Reload Docker if iptables chain doesn't exist
+  become: true
+  shell: iptables -S | grep docker
+  register: has_chain
+  failed_when: has_chain.rc > 1
+  changed_when: has_chain.rc != 0
+  notify:
+    - Restart docker
